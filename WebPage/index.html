@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Authorisation page</title>
+    </head>
+<body>
+    
+<button id="stupidButton">Authorise</button>
+
+<script>
+    function redirect(){
+        fetch('http://127.0.0.1:5500/getAuthorizationRequest')
+            .then(response =>response.json())
+            .then(data => {
+                window.location.href = data.url;
+                console.log(data.url)
+            })
+            .catch(error => console.error('Something is wrong again', error));
+    }
+    document.getElementById('stupidButton').addEventListener('click', redirect);
+</script>
+
+
+</body>
+</html>

@@ -19,7 +19,7 @@ def redirectPath():
         with open("./data/data.json", 'w') as json_file:
             json.dump(data, json_file, indent=2)
 
-        spotify.accessTokenRequest() # use client code to receive access token and refresh token
+        spotify.classInterface("accessTokenRequest") # use client code to receive access token and refresh token
     return redirect(url_for('mainPage')) # redirect user to mainPage
 
 
@@ -31,7 +31,7 @@ def mainPage():
 
 @app.route('/getAuthorizationRequest') # Execute authorization methods
 def receiveAuthUrl():
-    url = spotify.authorizationRequest()
+    url = spotify.classInterface("authorizationRequest")
     return {"url": url} # return spotify authentication URL (needs to be done once, if we have auth code saved it can be used as long as the user does not delete it)
 
 

@@ -3,8 +3,17 @@ from spotifyClass import SpotifyRequests
 spotify = SpotifyRequests;
 # Example program! 
 
-spotify.classInterface("playRequest") # Start playing the music
-spotify.classInterface("stopRequest") # Stop playing the msuic
+
+
+# response = spotify.classInterface("searchForItemRequest", "Consequences", "track", 0)
+# print(response.text)
+
+response = spotify.classInterface("changeVolumeRequest", 100)
+spotify.classInterface("stopRequest")
+spotify.classInterface("stopRequest")
+'''
+
+
 response = spotify.classInterface("playlistsRequest")
 json_data = response.json()
 for playlist in json_data["items"]:
@@ -26,3 +35,13 @@ spotify.classInterface("transferPlaybackRequest") # Transfer playing to device t
 time.sleep(2)
 spotify.classInterface("playRequest", playlistId, offset)
 
+
+        json_data = response.json()
+        for device in json_data["devices"]:
+            if device["name"] == "LESZKES-KOMP": # For now it's my comp for testing, not rasp for reasons above, might not want to do it here actually
+                data["deviceId"] = device["id"] 
+
+        with open("./data/data.json", 'w') as json_file:
+            json.dump(data, json_file, indent=2)
+
+'''

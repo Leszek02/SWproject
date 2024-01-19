@@ -181,7 +181,6 @@ class SpotifyRequests:
         return response;
 
 
-    #TODO: When raspberry boots, it is not 'active device' until you manually play music on it. Don't know how to fix it currently.
     def availableDevicesRequest(): # Collect all available devices and save Id of our raspberry, I think it should be executed with each boot
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
@@ -193,18 +192,11 @@ class SpotifyRequests:
             "Content-Type": "application/json"
         }
         response = requests.get(url=url, headers=headers)
-        json_data = response.json()
-        for device in json_data["devices"]:
-            if device["name"] == "LESZKES-KOMP": # For now it's my comp for testing, not rasp for reasons above, might not want to do it here actually
-                data["deviceId"] = device["id"] 
-
-        with open("./data/data.json", 'w') as json_file:
-            json.dump(data, json_file, indent=2)
 
         return response;
 
 
-    def transferPlaybackRequest(): # Change active device for the one in data.json, for love of god I don't know why sometimes it works, and sometimes it just doesn't
+    def transferPlaybackRequest(deviceId): # Change active device for the one in data.json, for love of god I don't know why sometimes it works, and sometimes it just doesn't
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
             accessToken = data.get("accessToken")
@@ -224,6 +216,7 @@ class SpotifyRequests:
         print(response.status_code)
         return response;
 
+
     def skipToNextRequest(): # Play next track
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
@@ -240,6 +233,7 @@ class SpotifyRequests:
 
         response = requests.post(url=url, headers=headers, data=json.dumps(params))
         return response;
+
 
     def skipToPreviousRequest(): # Play previous track
         with open("./data/data.json", 'r') as json_file:
@@ -258,6 +252,7 @@ class SpotifyRequests:
         response = requests.post(url=url, headers=headers, data=json.dumps(params))
         return response;
 
+
     def playlistsRequest(): # Get user's playlists
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
@@ -275,6 +270,7 @@ class SpotifyRequests:
         response = requests.get(url=url, headers=headers, params=params)
         return response;
 
+
     def playlistContentRequest(playlistId): # Get playlist's all tracks (All names and their id's in Spotify order)
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
@@ -291,3 +287,31 @@ class SpotifyRequests:
         response = requests.get(url=url, headers=headers, params=params)
         return response;
 
+
+    def searchForItemRequest(searchedString, type, offset):  # SearchedString - item's name, type - album, artist, track etc., offset - I set to return 10 items only, set offset to +10 to receive ten next items
+        with open("./data/data.json", 'r') as json_file:
+            data = json.load(json_file)
+            accessToken = data.get("accessToken")
+
+        url = f"https://api.spotify.com/v1/search?q={searchedString}&type={type}&market=PL&limit=10&offset={offset}"
+        headers = {
+            "Authorization": f"Bearer {accessToken}",
+            "type": "album"
+        }
+
+        response = requests.get(url=url, headers=headers)
+        return response;
+
+
+    def changeVolumeRequest(volumeValue):
+        with open("./data/data.json", 'r') as json_file:
+            data = json.load(json_file)
+            accessToken = data.get("accessToken")
+
+        url = f"https://api.spotify.com/v1/me/player/volume?volume_percent={volumeValue}"
+        headers = {
+            "Authorization": f"Bearer {accessToken}",
+        }
+
+        response = requests.put(url=url, headers=headers)
+        return response;

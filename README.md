@@ -11,11 +11,13 @@ Example: response = spotify.classInterface("playlistContentRequest", 1231245)
 
 Stops the current playback, if it's already stoped returns 403 response_code.
 
-## playRequest(albumUri = "", offset = 0)
+## playRequest(albumUri = "", type="track", offset = 0)
 ### If no arguments provided:
 Plays the current playback, if it's already stoped returns 403 response_code.
 ### If arguments provided:
-Starts playing the playlist with albumUri beginning with the 0 + offset song (0 is the first song). If it's already stoped returns 403 response_code.
+albumUri - Item id that you want to transfer to current playback
+type - one of these: "album", "playlist", "artist", "track"
+offset - for first three types only, starts playing from 0 + offset track position (first song is at position 0).
 
 ## availableDevicesRequest()
 

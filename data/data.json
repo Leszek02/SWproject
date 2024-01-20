@@ -1,12 +1,10 @@
 {
   "_comment": "This is our little database where we can store user ID, token etc. The hard-coded data (clientId, clientSecret, redirectUri) should be inserted via web page",
-  "clientId": "",
-  "clientSecret": "",
+  "clientId": "e221481a8d224b46b2705eab54ae65c3",
+  "clientSecret": "7c22785daac8488590bd8fa8c540a338",
   "redirectUri": "http://localhost:5500",
-  "accessToken": "",
-  "refreshToken": "",
-  "clientCode": "",
+  "accessToken": "BQDyCxM1ZJd0AIdyrGQ_Gq2CKf3AVyNF0BMHw-nFH4WA9Zjg0b_UfRPpxxD_VCIVDY0e2LZJlVgbhKA-81ZaF2ZHvFbpq979MQBA-5_3uyJh_v5wv9vsxGW4Q2W8skf2Koh7VgxgmcHk76w9M7Ad02TjQvD9KMpWcN_FNB8FimebRAGWaSQMtbsm23VeVrYRl0Epb0Zi1fFDQQ",
+  "refreshToken": "AQDpaHEeRvlZ2oReWlZBYfhWRSJotMaBFMoniTz18sEH5KFf5vHgewh2Ekmedc5Z_r_zu1wF6SjDnG8kdqz6U9h9EJu8O0ADAZJUHvXLuZeSkfMCNJ01yj31bKLpoxXaf40",
+  "clientCode": "AQDqUX6x_2hKKYsoT9f_rRWxQYf0r81h1b0iQWiE06zrvjC0HuctfdiJI-Y57ccMSCdRRewTtpExIXTttuycbQK7iD-1-6uaVgkwT4xtpCU_pUoKtmYOB4G5rEmcZz3nAltdkWFU7LM1jW7boeRopv3mIrwOo2HEjDtoOXnFpBpuA2KIssyDu-FYMt1VebVmyPMfvRoF6h3O2IuJx0sjElnvhTaR5PtYuL6_iqTeFkBGa7bZ_WEH9IgEojtCkXVxpiAJ-SoL",
   "deviceId": ""
 }
-
-

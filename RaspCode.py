@@ -5,13 +5,13 @@ spotify = SpotifyRequests;
 
 
 
-# response = spotify.classInterface("searchForItemRequest", "Consequences", "track", 0)
-# print(response.text)
+response = spotify.classInterface("searchForItemRequest", "Consequences", "track", 0)
+print(response.text)
 
-response = spotify.classInterface("changeVolumeRequest", 100)
-spotify.classInterface("stopRequest")
-spotify.classInterface("stopRequest")
-'''
+# response = spotify.classInterface("changeVolumeRequest", 100)
+# spotify.classInterface("stopRequest")
+# spotify.classInterface("stopRequest")
+
 
 
 response = spotify.classInterface("playlistsRequest")
@@ -30,12 +30,12 @@ for song in json_data["tracks"]["items"]:
     else:
         break
 response = spotify.classInterface("availableDevicesRequest") # Saves (right now my computer, change to raspberry) id to data.json
-print(response.text)
-spotify.classInterface("transferPlaybackRequest") # Transfer playing to device that is in data.jsonS
+# print(response.text)
+# spotify.classInterface("transferPlaybackRequest") # Transfer playing to device that is in data.jsonS
 time.sleep(2)
-spotify.classInterface("playRequest", playlistId, offset)
+spotify.classInterface("playRequest", "2AIYBoud4MKVYm1hofkp6v", "track", offset)
 
-
+'''
         json_data = response.json()
         for device in json_data["devices"]:
             if device["name"] == "LESZKES-KOMP": # For now it's my comp for testing, not rasp for reasons above, might not want to do it here actually

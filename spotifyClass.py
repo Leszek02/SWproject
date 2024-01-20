@@ -157,7 +157,7 @@ class SpotifyRequests:
         return response;
 
 
-    def playRequest(albumUri = "", offset = 0): # Plays the music on user's device, supply whole playlist and number from what track to start (counting from 0!!!!)
+    def playRequest(albumUri = "", type="track", offset = 0): # Plays the music on user's device, supply whole playlist and number from what track to start (counting from 0!!!!)
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
             accessToken = data.get("accessToken")
@@ -169,9 +169,17 @@ class SpotifyRequests:
             "Content-Type": "application/json",
             "device_id": deviceId
         }
-        if albumUri != "":
+
+        if type in ("album", "playlist", "artist"):
             params = {
-                "context_uri": f"spotify:playlist:{albumUri}",
+                "context_uri": f"spotify:{type}:{albumUri}",
+                "offset": {"position": offset}
+            }
+            response = requests.put(url=url, headers=headers, json=params)
+        elif type == "track":
+            print("DObrze")
+            params = {
+                "uris": [f"spotify:{type}:{albumUri}"],
                 "offset": {"position": offset}
             }
             response = requests.put(url=url, headers=headers, json=params)

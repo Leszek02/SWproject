@@ -73,5 +73,7 @@ state = "off" - disables repeat
 
 Returns all data about current user
 
+## playbackStateRequest()
 
+Returns all data about current user's playback state
 

@@ -1,10 +1,10 @@
 {
-  "_comment": "This is our little database where we can store user ID, token etc. The hard-coded data (clientId, clientSecret, redirectUri) should be inserted via web page",
+  "_comment": "This is our little database where we can store user ID, token etc. The hard-coded data (clientId, clientSecret) should be inserted via web page",
   "clientId": "e221481a8d224b46b2705eab54ae65c3",
   "clientSecret": "7c22785daac8488590bd8fa8c540a338",
   "redirectUri": "http://localhost:5500",
-  "accessToken": "BQDyCxM1ZJd0AIdyrGQ_Gq2CKf3AVyNF0BMHw-nFH4WA9Zjg0b_UfRPpxxD_VCIVDY0e2LZJlVgbhKA-81ZaF2ZHvFbpq979MQBA-5_3uyJh_v5wv9vsxGW4Q2W8skf2Koh7VgxgmcHk76w9M7Ad02TjQvD9KMpWcN_FNB8FimebRAGWaSQMtbsm23VeVrYRl0Epb0Zi1fFDQQ",
-  "refreshToken": "AQDpaHEeRvlZ2oReWlZBYfhWRSJotMaBFMoniTz18sEH5KFf5vHgewh2Ekmedc5Z_r_zu1wF6SjDnG8kdqz6U9h9EJu8O0ADAZJUHvXLuZeSkfMCNJ01yj31bKLpoxXaf40",
-  "clientCode": "AQDqUX6x_2hKKYsoT9f_rRWxQYf0r81h1b0iQWiE06zrvjC0HuctfdiJI-Y57ccMSCdRRewTtpExIXTttuycbQK7iD-1-6uaVgkwT4xtpCU_pUoKtmYOB4G5rEmcZz3nAltdkWFU7LM1jW7boeRopv3mIrwOo2HEjDtoOXnFpBpuA2KIssyDu-FYMt1VebVmyPMfvRoF6h3O2IuJx0sjElnvhTaR5PtYuL6_iqTeFkBGa7bZ_WEH9IgEojtCkXVxpiAJ-SoL",
+  "accessToken": "BQCPAKmWmVKZRPCEoMJnp5ooOjdw6qGhHmkBQy8xMvj39o2lFz6Gvx-Qxjn4bbPDJB01K4BNvoVUgAo20w5XvRpVdYyRmkYc-tyjqN_sBxM6KrS-7rMLheZntsrBuOfMWzXy7EanoxklacxTF1ryBOJGL5ge3Kt0LjRQvuLhGj8u2ZVE45xopf8J-dE5F_rB-kGbR0p-irf2Mg",
+  "refreshToken": "AQBSqvxNKPn2CLsdQs2v_c9kpyT3BK495rU7jP695W0ea6vHoF74qz5Rq8Tx6TFiyWI1hp79jnrxrhseP1f8lc_iU6jp1gnVrf0EyAOlsY8AwCSwQsXzzz8jDPx4q5K9q7U",
+  "clientCode": "AQBw4LxkxMEIKacHfJn4BogbCbopbtnM4wzFAeMGn_5t61gFo9HHhhkLwYPTyqwZw3hfBD-gT6caRJHFR_AZ6rrY9GPlK-cAOUgDN6GaEPngvehiDgRmFQmPnErCvZK1ZN3PnLJp5hv4wtjVh4Mdzt8MFOxyb2zv7L0g5Rj9FscfCQ9cRVdlucRezrGq7Nzl7fc_lAnL8UczCN2C_TypIolH-x3LT5DWwxwnVb_SXczooVo8G4Hqol0SZp2QvYtwArs-VTyf",
   "deviceId": ""
 }

@@ -180,7 +180,6 @@ class SpotifyRequests:
             print("DObrze")
             params = {
                 "uris": [f"spotify:{type}:{albumUri}"],
-                "offset": {"position": offset}
             }
             response = requests.put(url=url, headers=headers, json=params)
         else:
@@ -317,6 +316,34 @@ class SpotifyRequests:
             accessToken = data.get("accessToken")
 
         url = f"https://api.spotify.com/v1/me/player/volume?volume_percent={volumeValue}"
+        headers = {
+            "Authorization": f"Bearer {accessToken}",
+        }
+
+        response = requests.put(url=url, headers=headers)
+        return response;
+
+
+    def toggleShuffleRequest(shuffle):
+        with open("./data/data.json", 'r') as json_file:
+            data = json.load(json_file)
+            accessToken = data.get("accessToken")
+
+        url = f"https://api.spotify.com/v1/me/player/shuffle?state={shuffle}"
+        headers = {
+            "Authorization": f"Bearer {accessToken}",
+        }
+
+        response = requests.put(url=url, headers=headers)
+        return response;
+
+
+    def repeatModeRequest(state):
+        with open("./data/data.json", 'r') as json_file:
+            data = json.load(json_file)
+            accessToken = data.get("accessToken")
+
+        url = f"https://api.spotify.com/v1/me/player/repeat?state={state}"
         headers = {
             "Authorization": f"Bearer {accessToken}",
         }

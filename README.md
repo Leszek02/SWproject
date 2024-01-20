@@ -57,9 +57,17 @@ type - one of these: "album", "artist", "playlist", "track", "show", "episode", 
 
 offset - how many first items from the search you want to omit.
 
+## toggleShuffleRequest(shuffle)
 
+Enables shuffle if shuffle = True, disable shuffle if shuffle = False
 
+## repeatModeRequest(state)
 
+state = "track" - repeats the current track
+
+state = "context" - repeats current context (album, playlist etc.)
+
+state = "off" - disables repeat
 
 
 

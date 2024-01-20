@@ -350,3 +350,17 @@ class SpotifyRequests:
 
         response = requests.put(url=url, headers=headers)
         return response;
+
+    
+    def userProfileRequest():
+        with open("./data/data.json", 'r') as json_file:
+            data = json.load(json_file)
+            accessToken = data.get("accessToken")
+
+        url = f"https://api.spotify.com/v1/me"
+        headers = {
+            "Authorization": f"Bearer {accessToken}",
+        }
+
+        response = requests.get(url=url, headers=headers)
+        return response;

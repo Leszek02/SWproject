@@ -34,11 +34,15 @@ response = spotify.classInterface("availableDevicesRequest") # Saves (right now 
 
 response = spotify.classInterface("toggleShuffleRequest", False)
 response = spotify.classInterface("repeatModeRequest", "off")
-response = spotify.classInterface("userProfileRequest")
+# response = spotify.classInterface("userProfileRequest")
 print(response.text)
 # spotify.classInterface("transferPlaybackRequest") # Transfer playing to device that is in data.jsonS
 # time.sleep(2)
 # spotify.classInterface("playRequest", "2AIYBoud4MKVYm1hofkp6v", "track", offset)
+
+    
+response = spotify.classInterface("playbackStateRequest")
+print(response.text)
 
 '''
         json_data = response.json()

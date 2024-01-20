@@ -69,7 +69,9 @@ state = "context" - repeats current context (album, playlist etc.)
 
 state = "off" - disables repeat
 
+## userProfileRequest()
 
+Returns all data about current user
 
 
 

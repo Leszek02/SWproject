@@ -5,7 +5,7 @@ spotify = SpotifyRequests;
 
 
 
-response = spotify.classInterface("searchForItemRequest", "Consequences", "track", 0)
+# response = spotify.classInterface("searchForItemRequest", "Consequences", "track", 0)
 # print(response.text)
 
 # response = spotify.classInterface("changeVolumeRequest", 100)
@@ -13,6 +13,9 @@ response = spotify.classInterface("searchForItemRequest", "Consequences", "track
 # spotify.classInterface("stopRequest")
 
 
+# spotify.classInterface("repeatModeRequest", "off")
+spotify.classInterface("playRequest")
+'''
 
 response = spotify.classInterface("playlistsRequest")
 json_data = response.json()
@@ -44,7 +47,7 @@ print(response.text)
 response = spotify.classInterface("playbackStateRequest")
 print(response.text)
 
-'''
+
         json_data = response.json()
         for device in json_data["devices"]:
             if device["name"] == "LESZKES-KOMP": # For now it's my comp for testing, not rasp for reasons above, might not want to do it here actually

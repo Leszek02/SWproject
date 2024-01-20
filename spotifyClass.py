@@ -1,12 +1,8 @@
 import requests
 import base64
-import base64
 import json
 from urllib.parse import urlencode, urlunparse
-import self
 
-
-#TODO: need to write a function to refresh access Token, then it's just writing all needed API requests (I hope)
 class SpotifyRequests:
 
 
@@ -157,7 +153,7 @@ class SpotifyRequests:
         return response;
 
 
-    def playRequest(albumUri = "", type="track", offset = 0): # Plays the music on user's device, supply whole playlist and number from what track to start (counting from 0!!!!)
+    def playRequest(albumUri = "", type="", offset = 0): # Plays the music on user's device, supply whole playlist and number from what track to start (counting from 0!!!!)
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
             accessToken = data.get("accessToken")
@@ -177,7 +173,6 @@ class SpotifyRequests:
             }
             response = requests.put(url=url, headers=headers, json=params)
         elif type == "track":
-            print("DObrze")
             params = {
                 "uris": [f"spotify:{type}:{albumUri}"],
             }
@@ -366,7 +361,7 @@ class SpotifyRequests:
         return response;
 
 
-    def playbackStateRequest():
+    def playbackStateRequest(self):
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
             accessToken = data.get("accessToken")

@@ -29,10 +29,20 @@ def mainPage():
     return render_template('index.html');
 
 
-@app.route('/getAuthorizationRequest') # Execute authorization methods
+@app.route('/getAuthorizationRequest', methods=['PUT']) # Execute authorization methods
 def receiveAuthUrl():
     url = spotify.classInterface("authorizationRequest")
     return {"url": url} # return spotify authentication URL (needs to be done once, if we have auth code saved it can be used as long as the user does not delete it)
+
+
+@app.route('/putPlayRequest', methods = ['PUT', 'GET']) #
+def receivePlayUrl():
+    try:
+        response = spotify.classInterface("playRequest")
+        return str(response.status_code)
+    except Exception as e:
+        # Log the exception or handle it appropriately
+        return str(e), 500  # Return an error message and set the status code to 500
 
 
 # Main program here

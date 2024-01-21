@@ -11,7 +11,7 @@ Example: response = spotify.classInterface("playlistContentRequest", 1231245)
 
 Stops the current playback, if it's already stoped returns 403 response_code.
 
-## playRequest(albumUri = "", type="track", offset = 0)
+## playRequest(albumUri = "", type="", offset = 0)
 ### If no arguments provided:
 Plays the current playback, if it's already stoped returns 403 response_code.
 ### If arguments provided:

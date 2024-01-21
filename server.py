@@ -19,7 +19,7 @@ def redirectPath():
         with open("./data/data.json", 'w') as json_file:
             json.dump(data, json_file, indent=2)
 
-        spotify.classInterface("accessTokenRequest") # use client code to receive access token and refresh token
+        spotify.accessTokenRequest() # use client code to receive access token and refresh token
     return redirect(url_for('mainPage')) # redirect user to mainPage
 
 
@@ -29,13 +29,12 @@ def mainPage():
     return render_template('index.html');
 
 
-@app.route('/getAuthorizationRequest', methods=['PUT']) # Execute authorization methods
+@app.route('/getAuthorizationRequest') # Execute authorization methods
 def receiveAuthUrl():
-    url = spotify.classInterface("authorizationRequest")
+    url = spotify.authorizationRequest()
     return {"url": url} # return spotify authentication URL (needs to be done once, if we have auth code saved it can be used as long as the user does not delete it)
 
-
-@app.route('/putPlayRequest', methods = ['PUT', 'GET']) #
+@app.route('/putPlayRequest', methods = ['PUT']) #
 def receivePlayUrl():
     try:
         response = spotify.classInterface("playRequest")
@@ -44,6 +43,41 @@ def receivePlayUrl():
         # Log the exception or handle it appropriately
         return str(e), 500  # Return an error message and set the status code to 500
 
+@app.route('/putStopRequest', methods = ['PUT', 'GET']) #
+def receiveStopUrl():
+    try:
+        response = spotify.classInterface("stopRequest")
+        return str(response.status_code)
+    except Exception as e:
+        # Log the exception or handle it appropriately
+        return str(e), 500  # Return an error message and set the status code to 500
+    
+@app.route('/putNextSkipRequest', methods = ['POST']) #
+def receiveSkipToNextUrl():
+    try:
+        response = spotify.classInterface("skipToNextRequest")
+        return str(response.status_code)
+    except Exception as e:
+        # Log the exception or handle it appropriately
+        return str(e), 500  # Return an error message and set the status code to 500
+
+@app.route('/putPreviousSkipRequest', methods = ['POST']) #
+def receiveSkipToPreviousUrl():
+    try:
+        response = spotify.classInterface("skipToPreviousRequest")
+        return str(response.status_code)
+    except Exception as e:
+        # Log the exception or handle it appropriately
+        return str(e), 500  # Return an error message and set the status code to 500
+
+@app.route('/playbackStateRequest', methods = ['GET']) #
+def receiveplaybackStateRequestUrl():
+    try:
+        response = spotify.classInterface("playbackStateRequest")
+        return response.json()
+    except Exception as e:
+        # Log the exception or handle it appropriately
+        return str(e), 500  # Return an error message and set the status code to 500
 
 # Main program here
 if __name__ == '__main__':

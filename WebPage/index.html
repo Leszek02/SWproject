@@ -4,12 +4,44 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Authorisation page</title>
+        <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
     </head>
 <body>
-    
+
+<h1 id="displayedtime">00:00</h1>
+
 <button id="stupidButton">Authorise</button>
 
+<form method="">
+  <button id= "playButtonFr" type="button" onclick= play()>Play Fr</button>
+</form>
+
+<form method="">
+  <button id= "skipToNextButton" type="button" onclick= skipnext()>Skip</button>
+</form>
+
+<form method="">
+  <button id= "skipToPreviousButton" type="button" onclick= skipprevious()>Skip Back</button>
+</form>
+
+<form method="">
+  <button id= "stopButton" type="button" onclick= stop()>Stop</button>
+</form>
+
+<input type="username">
+<input type="secretclient">
+
+<select>
+  <option>The First Option</option>
+  <option>Another One</option>
+  <option>Last option</option>
+</select>
+
+
+
 <script>
+
+
     function redirect(){
         fetch('http://127.0.0.1:5500/getAuthorizationRequest')
             .then(response =>response.json())
@@ -19,7 +51,60 @@
             })
             .catch(error => console.error('Something is wrong again', error));
     }
-    document.getElementById('stupidButton').addEventListener('click', redirect);
+
+    async function play(){
+        console.log
+        try {
+        const response = await fetch('http://127.0.0.1:5500/putPlayRequest', {method: 'PUT'});
+        const data = await response.text();
+        } catch (error) {
+        console.error('Error:', error);
+        }
+    }
+
+     async function skipnext(){
+        console.log
+        try {
+        const response = await fetch('http://127.0.0.1:5500/putNextSkipRequest', {method: 'POST'});
+        const data = await response.text();
+        } catch (error) {
+        console.error('Error:', error);
+        }
+     }
+
+     async function skipprevious(){
+        console.log
+        try {
+        const response = await fetch('http://127.0.0.1:5500/putPreviousSkipRequest', {method: 'POST'})
+        const data = await response.text()
+        } catch (error) {
+        console.error('Error:', error)
+        }
+     }
+
+      async function stop(){
+        console.log
+        try {
+        const response = await fetch('http://127.0.0.1:5500/putStopRequest', {method: 'PUT'});
+        const data = await response.text();
+        } catch (error) {
+        console.error('Error:', error);
+        }
+      }
+
+    var intervalId = window.setInterval(function(){
+        updateNumber();
+     }, 750);
+
+    async function updateNumber() {
+        const response = await fetch('http://127.0.0.1:5500/playbackStateRequest', {method: 'GET'});
+        var prog = await response.json();
+        let time = parseInt(prog.progress_ms);
+        var minutes = Math.floor(time / 60000);
+        var seconds = (( time % 60000) / 1000).toFixed(0);
+        document.getElementById('displayedtime').innerHTML =  minutes + ":" + seconds;
+    }
+
 </script>
 
 

@@ -14,7 +14,9 @@ spotify = SpotifyRequests;
 
 
 # spotify.classInterface("repeatModeRequest", "off")
-spotify.classInterface("playRequest")
+response = spotify.classInterface("playbackStateRequest")
+# spotify.classInterface("changeVolumeRequest", 61)
+print(response.text)
 '''
 
 response = spotify.classInterface("playlistsRequest")

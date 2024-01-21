@@ -361,7 +361,7 @@ class SpotifyRequests:
         return response;
 
 
-    def playbackStateRequest(self):
+    def playbackStateRequest():
         with open("./data/data.json", 'r') as json_file:
             data = json.load(json_file)
             accessToken = data.get("accessToken")

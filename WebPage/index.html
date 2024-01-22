@@ -4,35 +4,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authorisation page</title>
+    <title>Radio page</title>
+
+    <style>
+    body {
+        display: flex;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #playlists {
+        flex: 0 0 auto;
+    width: auto; /* Set width to auto */
+    height: 100%;
+    background-color: #f0f0f0;
+    overflow-y: auto;
+    margin-top: 0; /* Remove margin-top */
+        }
+
+    #controller {
+        flex: 1; /* Take the remaining width */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    #leftStrip {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+    #authorizeButton {
+        position: absolute;
+        top: 10px; /* Adjust the top position as needed */
+        right: 10px; /* Adjust the right position as needed */
+        padding: 10px;
+    }
+
+    #refreshButton {
+    padding: 10px;
+    width: 100%; /* Set width to 100% */
+}
+
+/* Updated styling for the button container */
+#buttons {
+    /* Updated styling for the button container */
+    display: flex;
+    flex-wrap: nowrap; /* Ensure flex items do not wrap to the next line */
+    gap: 10px; /* Adjust the gap between buttons as needed */
+    justify-content: center; /* Center the buttons horizontally */
+}
+
+#playlists li {
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+#playlists li:hover {
+    background-color: #ddd; /* Change the background color on hover */
+}
+
+
+/* Style for each button in the container */
+button {
+    /* Adjust individual button styles as needed */
+    padding: 10px;
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+    </style>
 </head>
 
 <body onLoad="scrapeAllPlaylists()">
 
-    <h1 id="displayedtime">00:00</h1>
-    <h2 id="songname">default</h2>
-    <h3 id="authorname">default</h3>
+    
+    <div id="leftStrip">
+        <button id="refreshButton" onclick="refresh()">Refresh</button>
 
-    <button id="stupidButton">Authorise</button>
+        <div id="playlists"></div>
+    </div>
 
-    <form method="">
-        <button id="playButtonFr" type="button" onclick=play()>Play</button>
-    </form>
+    <div id="controller">
+        <!-- Your existing content goes here -->
+        <h2 id="songname">default</h2>
+        <h3 id="authorname">default</h3>
+        <h1 id="displayedtime">00:00</h1>
 
-    <form method="">
-        <button id="skipToNextButton" type="button" onclick=skipnext()>Skip</button>
-    </form>
+        <div id="buttons">
+            <button id="skipToPreviousButton" type="button" onclick=skipprevious()>Skip Back</button>
 
-    <form method="">
-        <button id="skipToPreviousButton" type="button" onclick=skipprevious()>Skip Back</button>
-    </form>
+            <button id="playButtonFr" type="button" onclick=play()>Play</button>
+        
+            <button id="stopButton" type="button" onclick=stop()>Stop</button>
 
-    <form method="">
-        <button id="stopButton" type="button" onclick=stop()>Stop</button>
-    </form>
+            <button id="skipToNextButton" type="button" onclick=skipnext()>Skip</button>
+        </div>
 
-    <button onclick="refresh()">Refresh</button>
-    <div id="playlists"></div>
+        <button id="authorizeButton" type="button" onclick=redirect()>Authorise</button>
+
+    </div>
 
 
     <script>
@@ -111,6 +183,7 @@
             let time = parseInt(prog.progress_ms);
             var minutes = Math.floor(time / 60000);
             var seconds = ((time % 60000) / 1000).toFixed(0);
+            seconds = seconds.padStart(2, '0')
             document.getElementById('displayedtime').innerHTML = minutes + ":" + seconds;
             document.getElementById('authorname').innerHTML = authorname;
             document.getElementById('songname').innerHTML = name;

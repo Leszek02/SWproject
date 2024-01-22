@@ -93,6 +93,8 @@ button {
         <h1 id="displayedtime">00:00</h1>
 
         <div id="buttons">
+            <button id="repeatButton" type="button" onclick=changerepeat()> Repeat </button> 
+
             <button id="skipToPreviousButton" type="button" onclick=skipprevious()>Skip Back</button>
 
             <button id="playButtonFr" type="button" onclick=play()>Play</button>
@@ -100,6 +102,8 @@ button {
             <button id="stopButton" type="button" onclick=stop()>Stop</button>
 
             <button id="skipToNextButton" type="button" onclick=skipnext()>Skip</button>
+
+            <button id="shuffleButton" type="button" onclick=shufflerepeat()> Shuffle </button>
         </div>
 
         <button id="authorizeButton" type="button" onclick=redirect()>Authorise</button>
@@ -108,6 +112,9 @@ button {
 
 
     <script>
+
+        var repeatMode = "off";
+        var shuffleMode = false;
 
         function redirect() {
             fetch('http://127.0.0.1:5500/getAuthorizationRequest')
@@ -179,6 +186,20 @@ button {
             const response = await fetch('http://127.0.0.1:5500/playbackStateRequest', { method: 'GET' });
             var prog = await response.json();
             let authorname = prog.item.album.artists[0].name;
+
+            repeatMode = prog.repeat_state;
+            if (repeatMode == 'off')
+                repeatButton.style.backgroundColor = 'red'
+            else
+                repeatButton.style.backgroundColor = 'green'
+            shuffleMode = prog.shuffle_state;
+            if (shuffleMode == true)
+                shuffleButton.style.backgroundColor = 'green'
+            else
+                shuffleButton.style.backgroundColor = 'red'
+
+
+
             let name = prog.item.name;
             let time = parseInt(prog.progress_ms);
             var minutes = Math.floor(time / 60000);
@@ -228,8 +249,8 @@ button {
             });
         }
 
-        async function scrapeAllSongs(playlist, container) {
 
+        async function scrapeAllSongs(playlist, container) {
             const response = await fetch('http://127.0.0.1:5500/playlistContentRequest/' + playlist.id, { method: 'GET' });
             const data = await response.json();
 
@@ -249,6 +270,29 @@ button {
                 name.appendChild(document.createTextNode(track.track.name));
                 trackView.appendChild(name);
             });
+        }
+
+
+        async function changerepeat(){
+            if (repeatMode == 'off')   
+                repeatMode = "context"
+            else
+                repeatMode = "off"
+            try {
+                await fetch('http://127.0.0.1:5500/toggleRepeat/' + repeatMode, { method: 'PUT' });
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+
+        async function shufflerepeat(){
+            shuffleMode = !shuffleMode
+            try {
+                const response = await fetch('http://127.0.0.1:5500/toggleShuffle/' + shuffleMode, { method: 'GET' });
+            } catch (error) {
+                console.error('Error:', error);
+            }
         }
 
     </script>

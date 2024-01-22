@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_cors import CORS
 from spotifyClass import SpotifyRequests
 
-app = Flask(__name__, template_folder='WebPage')  # WebPage is a folder for all pages
+app = Flask(__name__, template_folder='WebPage')  # WebPage is a folder for our page
 CORS(app)
 
 
@@ -22,7 +22,7 @@ def redirectPath():
     return redirect(url_for('mainPage'))  # redirect user to mainPage
 
 
-@app.route('/main')  # This is temporary the main page
+@app.route('/main')
 def mainPage():
     app.logger.info('Rendering page')
     return render_template('index.html');
@@ -41,8 +41,7 @@ def receivePlaySongUrl(playlist_id, track):
         response = spotify.classInterface("playRequest", playlist_id, "playlist", track)
         return str(response.status_code)
     except Exception as e:
-        # Log the exception or handle it appropriately
-        return str(e), 500  # Return an error message and set the status code to 500
+        return str(e), 500
 
 
 @app.route('/putPlayRequest', methods=['PUT'])  #
@@ -51,8 +50,7 @@ def receivePlayUrl():
         response = spotify.classInterface("playRequest")
         return str(response.status_code)
     except Exception as e:
-        # Log the exception or handle it appropriately
-        return str(e), 500  # Return an error message and set the status code to 500
+        return str(e), 500
 
 
 @app.route('/putStopRequest', methods=['PUT', 'GET'])  #
@@ -61,8 +59,7 @@ def receiveStopUrl():
         response = spotify.classInterface("stopRequest")
         return str(response.status_code)
     except Exception as e:
-        # Log the exception or handle it appropriately
-        return str(e), 500  # Return an error message and set the status code to 500
+        return str(e), 500 
 
 
 @app.route('/putNextSkipRequest', methods=['POST'])  #
@@ -71,8 +68,7 @@ def receiveSkipToNextUrl():
         response = spotify.classInterface("skipToNextRequest")
         return str(response.status_code)
     except Exception as e:
-        # Log the exception or handle it appropriately
-        return str(e), 500  # Return an error message and set the status code to 500
+        return str(e), 500
 
 
 @app.route('/putPreviousSkipRequest', methods=['POST'])  #
@@ -81,8 +77,7 @@ def receiveSkipToPreviousUrl():
         response = spotify.classInterface("skipToPreviousRequest")
         return str(response.status_code)
     except Exception as e:
-        # Log the exception or handle it appropriately
-        return str(e), 500  # Return an error message and set the status code to 500
+        return str(e), 500
 
 
 @app.route('/playbackStateRequest', methods=['GET'])  #
@@ -91,8 +86,8 @@ def receiveplaybackStateRequestUrl():
         response = spotify.classInterface("playbackStateRequest")
         return response.json()
     except Exception as e:
-        # Log the exception or handle it appropriately
-        return str(e), 500  # Return an error message and set the status code to 500
+        return str(e), 500
+
 
 @app.route('/playlistContentRequest/<name_id>', methods=['GET'])  #
 def receiveplaylistContentRequest(name_id):
@@ -100,14 +95,33 @@ def receiveplaylistContentRequest(name_id):
         response = spotify.classInterface("playlistContentRequest", name_id);
         return response.json()
     except Exception as e:
-        # Log the exception or handle it appropriately
-        return str(e), 500  # Return an error message and set the status code to 500
+        return str(e), 500 
 
 
 @app.route('/playlistRequest', methods=['GET'])  #
 def receiveplaylistRequest():
     try:
         response = spotify.classInterface("playlistsRequest");
+        return response.json()
+    except Exception as e:
+
+        return str(e), 500 
+    
+
+@app.route('/toggleRepeat/<option>', methods=['PUT', 'GET'])  #
+def toggleRepeat(option):
+    try:
+        response = spotify.classInterface("repeatModeRequest", option);
+        return response.json()
+    except Exception as e:
+        # Log the exception or handle it appropriately
+        return str(e), 500  # Return an error message and set the status code to 500
+    
+
+@app.route('/toggleShuffle/<option>', methods=['PUT', 'GET'])  #
+def toggleShuffle(option):
+    try:
+        response = spotify.classInterface("toggleShuffleRequest", option);
         return response.json()
     except Exception as e:
         # Log the exception or handle it appropriately

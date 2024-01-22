@@ -3,8 +3,8 @@
   "clientId": "e221481a8d224b46b2705eab54ae65c3",
   "clientSecret": "7c22785daac8488590bd8fa8c540a338",
   "redirectUri": "http://localhost:5500",
-  "accessToken": "BQAESIRt0S13PLZ1xPUROB9WjcJuxOoXhWDbHB2Z0AMwVjiUk37hnsNYYi09px7yq6chn5_KJ6dX3uqkjMGKkH1q62ba6dNYVhpvPIXjghRJbq6kd-9FHyk38CE_mpYpD_01C1C8cpJf8uezz0jvA2d95RoyeDR5Q4A8LFjUpruTDAVULAiI4-eotn8iYG4jhz2Gtz1lMHjwNA",
-  "refreshToken": "AQD8ebwOtfJpMhPEbVb8MkNtSVRYffAvxRW27AxPHQT6TeHFLSsIe9dludW5Crew-fn_5s8ODnAyFV01XXJEID4tuKeKDIXLotdtRHX7pzpZZbOXO3v17Lntm7F6q5ZcnY0",
-  "clientCode": "AQARVF8EDwnJZG0B0cMo-WM3HaSsNj9oz5ynZpYZkH8vzfIv1byNwV1jAxVVEVqYUGAI7aEwKkWuo_0dwWLLTkCEpb4CJeEI7i-shZmFf1N0KjLJL3u5ltxADHI8budxPQRBv5RpwXXeCttaqd87SfBe3MaEFUyYNgWhhAKyx7BUrSaJG-JB3xOV2KImWgZieCGdcdtX19viNP8vQPhTP2srw7o9cg87NqpBlBQtCGL3oowDAYJBISjQfDlGusHTm6vjL9MD",
+  "accessToken": "",
+  "refreshToken": "",
+  "clientCode": "",
   "deviceId": ""
 }
